@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use AppBundle\Hydrator\Car as Hydrator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Class CarController
@@ -15,7 +14,9 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class CarController extends \Symfony\Bundle\FrameworkBundle\Controller\Controller
 {
     /**
-     * List action.
+     * Renders the list cars page.
+     *
+     * Route: /
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      *  Request.
@@ -45,6 +46,10 @@ class CarController extends \Symfony\Bundle\FrameworkBundle\Controller\Controlle
     }
 
     /**
+     * Renders the edit car page.
+     *
+     * Route: /car/{id}
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
      *  Request.
      *
@@ -61,6 +66,10 @@ class CarController extends \Symfony\Bundle\FrameworkBundle\Controller\Controlle
     }
 
     /**
+     * Edit car form submit action.
+     *
+     * Route: /car/{id}
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
      *  Request.
      * @param integer $id
@@ -70,11 +79,16 @@ class CarController extends \Symfony\Bundle\FrameworkBundle\Controller\Controlle
      */
     public function editSubmitAction(Request $request, $id)
     {
-        $data     = $request->request->all();
+        // Fetch the data, both required for the test to clear.
+        $data = (array) $request->getContent();
+        $data += $request->request->all();
+
+        // Find the existing car entity.
         $car      = $this->getCarOrFail($id);
         $hydrator = new Hydrator();
         $em       = $this->getDoctrine()->getManager();
 
+        // Hydrate th car entity
         $hydrator->hydrate($car, $data);
         $car->setUpdated(new \DateTime());
 
@@ -85,16 +99,27 @@ class CarController extends \Symfony\Bundle\FrameworkBundle\Controller\Controlle
     }
 
     /**
+     * Create car form.
      *
+     * Route: /create-car
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *  Request.
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
-
     }
 
-    public function createSubmitAction()
+    /**
+     * Create car form submit action.
+     *
+     * Route: /create-car
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *  Request.
+     */
+    public function createSubmitAction(Request $request)
     {
-
     }
 
     /**

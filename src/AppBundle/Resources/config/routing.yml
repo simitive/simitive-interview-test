@@ -9,3 +9,11 @@ submit_edit_car:
     path: /car/{id}
     methods: [POST]
     defaults: { _controller: AppBundle:Car:editSubmit}
+create_car:
+    path: /create-car
+    methods: [GET]
+    defaults: { _controller: AppBundle:Car:create }
+create_car_submit:
+    path: /create-car
+    methods: [POST]
+    defaults: { _controller: AppBundle:Car:createSubmit }
