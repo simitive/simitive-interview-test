@@ -1,0 +1,25 @@
+AppBundle\Entity\Car:
+    type: entity
+    table: car
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 255
+        manufacturer:
+            type: string
+            length: 255
+        colour:
+            type: string
+            length: 255
+        airConditioning:
+            type: boolean
+        centralLocking:
+            type: boolean
+        created:
+            type: datetime
+        updated:
+            type: datetime

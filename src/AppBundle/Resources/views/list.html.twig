@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/styles/bootstrap.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+
+                <h1 class="page-header">Car list</h1>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Manufacturer</th>
+                        <th>Colour</th>
+                        <th>Air Conditioning</th>
+                        <th>Central Locking</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for car in cars %}
+                        <tr>
+                            <td>{{ car.name }}</td>
+                            <td>{{ car.manufacturer }}</td>
+                            <td>{{ car.colour }}</td>
+                            <td>{{ car.airConditioning }}</td>
+                            <td>{{ car.centralLocking }}</td>
+                            <td><a href="/car/{{ car.id }}" class="btn btn-primary">Edit</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

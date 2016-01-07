@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/styles/bootstrap.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+                <form method="post">
+
+                    <h1 class="page-header">Edit car</h1>
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ car.name }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="manufacturer">Manufacturer</label>
+                        <input type="text" class="form-control" id="manufacturer" name="manufacturer" value="{{ car.manufacturer }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="colour">Colour</label>
+                        <select name="colour" id="colour" class="form-control">
+                            <option value="red" {% if car.colour == 'red' %}selected="selected"{% endif %}>
+                                red
+                            </option>
+                            <option value="blue" {% if car.colour == 'blue' %}selected="selected"{% endif %}>
+                                blue
+                            </option>
+                            <option value="brown" {% if car.colour == 'brown' %}selected="selected"{% endif %}>
+                                brown
+                            </option><option value="green" {% if car.colour == 'green' %}selected="selected"{% endif %}>
+                                green
+                            </option><option value="yellow" {% if car.colour == 'yellow' %}selected="selected"{% endif %}>
+                                yellow
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="air-conditioning" name="air-conditioning" {% if car.airConditioning %} checked="checked" {% endif %}>
+                                Air conditioning
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="central-locking" name="central-locking" {% if car.centralLocking %} checked="checked" {% endif %}>
+                                Central locking
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="clearfix">
+                        <input type="submit" value="Save" id="submit" class="btn btn-primary pull-right">
+                        <a id="cancel" class="btn btn-default pull-left" href="/">Cancel</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

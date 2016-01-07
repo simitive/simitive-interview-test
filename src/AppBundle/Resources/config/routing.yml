@@ -1,0 +1,11 @@
+app_home:
+    path: /
+    defaults: { _controller: AppBundle:Car:list }
+edit_car:
+    path: /car/{id}
+    methods: [GET]
+    defaults: { _controller: AppBundle:Car:edit }
+submit_edit_car:
+    path: /car/{id}
+    methods: [POST]
+    defaults: { _controller: AppBundle:Car:editSubmit}
